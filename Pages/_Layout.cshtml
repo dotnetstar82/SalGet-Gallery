@@ -1,0 +1,69 @@
+@{
+    Context.Response.Headers.Add ("Cache-Control", "max-age=3600");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="nofollow" />
+    <title>@ViewData["Title"] - FuGet Gallery</title>
+@if (ViewData["meta"] != null) {
+    foreach (var kv in (IEnumerable<KeyValuePair<string,string>>)ViewData["meta"]) {
+        <meta name="@kv.Key" content="@kv.Value" />
+    }
+}
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/fira_code.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118756821-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-118756821-1');
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> -->
+                <a href="/" class="navbar-brand" style="padding-right:2em">fuget.org</a>
+                <form id="searchForm" class="input-group" action="/packages" method="GET" style="margin-top:0.6em;width:20em">
+                    <input name="q" id="packageSearch" value="@ViewData["q"]" type="text" class="form-control" placeholder="Search Packages"
+                           style="background-color:#444;border-color:#444;color:#fff;border-radius:0.5em;outline:none;box-shadow:none;"
+                           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer>
+            <hr />
+            <p><a href="/">fuget.org</a> is &copy; @DateTime.UtcNow.Year Frank A. Krueger</p>
+            <p>help me <a href="https://github.com/praeclarum/FuGetGallery">build this on github</a></p>
+            <p><a href="/privacy">privacy policy</a></p>
+        </footer>
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+            crossorigin="anonymous"
+            integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+            crossorigin="anonymous"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+    </script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

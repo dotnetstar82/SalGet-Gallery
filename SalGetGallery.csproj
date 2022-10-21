@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ICSharpCode.Decompiler" Version="3.2.0.3856" />
+    <PackageReference Include="Mono.Cecil" Version="0.10.4" />
+    <PackageReference Include="Microsoft.AspNetCore.All">
+      <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+      <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
+    <PackageReference Include="NGraphics" Version="0.6.0-beta1" />
+    <PackageReference Include="NuGet.Versioning" Version="5.3.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.258-beta" />
+    <PackageReference Include="System.CodeDom" Version="4.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.IO.Pipes.AccessControl" Version="4.5.0" />
+    <PackageReference Include="System.IO.Ports" Version="4.5.0" />
+    <PackageReference Include="System.Security.Permissions" Version="4.5.0" />
+    <PackageReference Include="System.Threading.AccessControl" Version="4.5.0" />
+    <PackageReference Include="ListDiff" Version="1.0.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Licenses\Apache2.txt" />
+    <EmbeddedResource Include="Resources\Licenses\GPL2.txt" />
+    <EmbeddedResource Include="Resources\Licenses\MIT.txt" />
+    <EmbeddedResource Include="Resources\Licenses\MSPL.txt" />
+    <EmbeddedResource Include="Resources\Licenses\BSD2Clause.txt" />
+    <EmbeddedResource Include="Resources\Licenses\BSD3Clause.txt" />
+    <EmbeddedResource Include="Resources\Licenses\LGPL21.txt" />
+    <EmbeddedResource Include="Resources\Licenses\GPL3.txt" />
+    <EmbeddedResource Include="Resources\Licenses\MPL2.txt" />
+    <EmbeddedResource Include="Resources\Licenses\MPL11.txt" />
+    <EmbeddedResource Include="Resources\Licenses\LGPL3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Resources.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Licenses\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Licenses\Apache-2.0.txt" />
+    <None Remove="Resources\Licenses\GPL2.txt" />
+    <None Remove="Resources\Licenses\MIT.txt" />
+    <None Remove="Resources\Licenses\MSPL.txt" />
+    <None Remove="Resources\Licenses\BSD2Clause.txt" />
+    <None Remove="Resources\Licenses\BSD3Clause.txt" />
+    <None Remove="Resources\Licenses\LGPL21.txt" />
+    <None Remove="Resources\Licenses\GPL3.txt" />
+    <None Remove="Resources\Licenses\MPL2.txt" />
+    <None Remove="Resources\Licenses\MPL11.txt" />
+    <None Remove="Resources\Licenses\LGPL3.txt" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,36 @@
+@page
+@using System.Net.Http
+@inject IHttpClientFactory HttpClientFactory
+
+@{
+    var q = Request.Query["q"].FirstOrDefault() ?? "";
+    var httpClient = HttpClientFactory.CreateClient();
+    var results = await PackagesSearchResults.GetAsync (q, httpClient);
+    ViewData["Title"] = "Packages";
+    ViewData["q"] = q;
+}
+
+<h1 style="margin-top:1em;margin-bottom:1em">Packages</h1>
+
+@if (results != null) {
+    if (results.Error != null) {
+        <p>@results.Error</p>
+    } else if (results.Results.Count == 0) {
+        <p>No packages were found for <b>@q</b></p>
+    }
+    <ul class="media-list">
+    @foreach (var r in results.Results) {
+        <li class="media">
+            <div class="media-left">
+                <a href="/packages/@Uri.EscapeDataString(@r.PackageId)">
+                    <img src="@r.SafeIconUrl" class="package-icon-in-list" width="64" height="64" onError="this.onerror=null;this.src='/images/no-icon.png';" />
+                </a>
+            </div>
+            <div class="media-body">
+                <h4><a href="/packages/@Uri.EscapeDataString(@r.PackageId)">@r.PackageId</a><small> by @r.Authors</small></h4>
+                <p style="max-height:5em;overflow:auto">@r.Description</p>
+            </div>
+        </li>
+    }
+    </ul>
+}
